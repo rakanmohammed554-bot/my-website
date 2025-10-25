@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>موقع المعرفة الطلابي في كلية المجتمع بالمعافر وأقسامها</title>
+<style>
+body {  
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin:0; padding:0;
+    direction:rtl;
+    background-color:#f5f7fa;
+    transition: background 1s;
+}
+header {
+    color:#004aad;
+    padding:25px 0;
+    text-align:center;
+    font-size:1.5em;
+    box-shadow:0 3px 10px rgba(0,0,0,0.2);
+    position:relative;
+    transition: background 1s, color 0.5s, text-shadow 1s;
+    border-bottom: 5px solid #004aad;
+    border-radius: 0 0 30px 30px;
+    font-weight:bold;
+}
+nav {
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    padding:12px 0;
+    text-align:center;
+    border-bottom: 5px solid #004aad;
+    border-radius: 0 0 25px 25px;
+    transition: background 1s;
+}
+nav a {
+    color:#004aad;
+    text-decoration:none;
+    font-weight:bold;
+    padding:5px 18px;
+    border-radius:10px;
+    transition: 0.5s;
+    font-size:1.5em;
+    border: 1px solid transparent;
+}
+nav a:hover {
+    background-color:#ffcc00;
+    color:#004aad;
+    transform: scale(1.1);
+    border:1px solid #004aad;
+}
+.content {
+    max-width:1200px;
+    margin:30px auto;
+    padding:0 20px;
+}
+.row { 
+    display:flex; 
+    flex-wrap:wrap; 
+    gap:20px; 
+    justify-content:center;
+}
+.column { 
+    flex:1; 
+    min-width:270px; 
+}
+.card {
+    background-color:white;
+    padding:25px 20px;
+    margin-bottom:20px;
+    box-shadow:0 4px 6px rgba(0,0,0,0.1);
+    border-radius:12px;
+    transition: transform 0.4s, box-shadow 0.3s, opacity 0.6s, background-color 1s;
+    opacity:0;
+    transform: translateY(30px);
+    color:#004aad;
+    cursor:pointer;
+    text-align:center;
+}
+.card:hover {
+    transform: scale(1.08);
+    box-shadow:0 10px 18px rgba(0,0,0,0.25);
+}
+.card img {
+    width:60px;
+    margin-bottom:10px;
+}
+footer {
+    background:#004aad;
+    color:white;
+    text-align:center;
+    padding:20px 0;
+    margin-top:30px;
+    font-style:italic;
+    font-size:1.1em;
+    box-shadow:0 -3px 10px rgba(0,0,0,0.3);
+}
+.show { 
+    opacity:1; 
+    transform: translateY(0); 
+}
+.card.active {
+    transform: scale(1.12);
+    z-index:10;
+}
+.modal {
+    display:none;
+    position:fixed;
+    z-index:1000;
+    left:0; top:0;
+    width:100%; height:100%;
+    background:rgba(0,0,0,0.6);
+    backdrop-filter: blur(3px);
+    justify-content:center;
+    align-items:center;
+}
+.modal-content {
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    max-width:600px;
+    text-align:center;
+    box-shadow:0 6px 18px rgba(0,0,0,0.3);
+}
+.modal-content h2 {
+    color:#004aad;
+    margin-bottom:15px;
+}
+.modal-content p {
+    color:#333;
+    line-height:1.7;
+    margin-bottom:10px;
+    text-align: justify;
+}
+.study-duration {
+    background:#e6f0ff;
+    display:inline-block;
+    padding:6px 14px;
+    border-radius:20px;
+    font-weight:bold;
+    color:#004aad;
+    margin-top:10px;
+}
+.close-btn {
+    background:#004aad;
+    color:white;
+    border:none;
+    padding:10px 22px;
+    border-radius:8px;
+    margin-top:20px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:0.3s;
+}
+.close-btn:hover {
+    background:#ffcc00;
+    color:#004aad;
+}
+</style>
+</head>
+<body>
+
+<header id="pageTitle">
+موقع المعرفة الطلابي في كلية المجتمع بالمعافر وأقسامها
+</header>
+
+<nav>
+    <a href="#" id="homeLink">الرئيسية</a>
+    <a href="#" id="servicesLink">خدماتنا</a>
+    <a href="#" id="projectsLink">مشاريعنا</a>
+    <a href="#" id="contactLink">اتصل بنا</a>
+</nav>
+
+<!-- الرئيسية - الأقسام التسعة -->
+<div class="content" id="mainContent">
+    <div class="row" id="cardContainer">
+        <div class="column card" data-modal="it">
+            <img src="https://img.icons8.com/color/96/000000/laptop.png"/>
+            <h2>قسم تقنية المعلومات</h2>
+            <p>تعلم البرمجة والشبكات.</p>
+        </div>
+        <div class="column card" data-modal="cyber">
+            <img src="https://img.icons8.com/color/96/000000/shield.png"/>
+            <h2>قسم الأمن السيبراني</h2>
+            <p>حماية البيانات.</p>
+        </div>
+        <div class="column card" data-modal="assistant">
+            <img src="https://img.icons8.com/color/96/000000/stethoscope.png"/>
+            <h2>قسم مساعد طبيب</h2>
+            <p>رعاية المرضى الأساسية.</p>
+        </div>
+        <div class="column card" data-modal="accounting">
+            <img src="https://img.icons8.com/color/96/000000/money-bag.png"/>
+            <h2>قسم المحاسبة</h2>
+            <p>إدارة الحسابات والمالية.</p>
+        </div>
+        <div class="column card" data-modal="pharmacy">
+            <img src="https://img.icons8.com/color/96/000000/pills.png"/>
+            <h2>قسم الصيدلة</h2>
+            <p>إعداد وصرف الأدوية.</p>
+        </div>
+        <div class="column card" data-modal="labs">
+            <img src="https://img.icons8.com/color/96/000000/test-tube.png"/>
+            <h2>قسم المختبرات</h2>
+            <p>إجراء التجارب والبحوث العلمية.</p>
+        </div>
+        <div class="column card" data-modal="midwifery">
+            <img src="https://img.icons8.com/color/96/000000/pregnant.png"/>
+            <h2>قسم القبالة</h2>
+            <p>تعليم الرعاية الصحية للأمهات والمواليد الجدد.</p>
+        </div>
+        <div class="column card" data-modal="graphics">
+            <img src="https://img.icons8.com/color/96/000000/design.png"/>
+            <h2>قسم الجرافيكس</h2>
+            <p>تعلم التصميم الجرافيكي وبرامج الرسوميات.</p>
+        </div>
+        <div class="column card" data-modal="cs">
+            <img src="https://img.icons8.com/color/96/000000/computer.png"/>
+            <h2>قسم علوم الحاسوب</h2>
+            <p>دراسة الخوارزميات وهياكل البيانات والبرمجة.</p>
+        </div>
+    </div>
+</div>
+
+<!-- خدماتنا -->
+<div class="content" id="servicesContent" style="display:none;">
+    <h2 style="text-align:center; color:#004aad; margin-bottom:30px;">خدمات كلية المجتمع بالمعافر</h2>
+    <div class="row">
+        <div class="column card">
+            <img src="https://img.icons8.com/color/96/000000/school-building.png"/>
+            <h3>قاعات مبنى 7 يوليو</h3>
+            <p>توفر قاعات حديثة مجهزة للتدريس في منطقة النشمة.</p>
+        </div>
+        <div class="column card">
+            <img src="https://img.icons8.com/color/96/000000/school.png"/>
+            <h3>قاعات مبنى الزبير بن العوام</h3>
+            <p>قاعات متكاملة لتقديم المحاضرات العملية والنظرية في عزلة الشعوبة.</p>
+        </div>
+        <div class="column card">
+            <img src="https://img.icons8.com/color/96/000000/bus.png"/>
+            <h3>تسهيل وسائل النقل</h3>
+            <p>تنظيم وسائل نقل للمدرسين لتسهيل الوصول إلى الكلية.</p>
+        </div>
+        <div class="column card">
+            <img src="https://img.icons8.com/color/96/000000/laboratory.png"/>
+            <h3>تجهيز معامل متكاملة</h3>
+            <p>معامل مجهزة بالكامل للمحاضرات العملية لجميع الأقسام.</p>
+        </div>
+        <div class="column card">
+            <img src="https://img.icons8.com/color/96/000000/library.png"/>
+            <h3>مكتبة الكلية</h3>
+            <p>توفر مصادر تعليمية حديثة للطلاب والمدرسين.</p>
+        </div>
+    </div>
+</div>
+
+<!-- مشاريعنا -->
+<div class="content" id="projectsContent" style="display:none;">
+    <h2 style="text-align:center; color:#004aad; margin-bottom:30px;">مشاريع كلية المجتمع بالمعافر</h2>
+    <div class="row">
+        <div class="column card">
+            <img src="https://img.icons8.com/color/96/000000/school.png"/>
+            <h3>افتتاح قاعات جديدة</h3>
+            <p>تخصيص قاعات حديثة مجهزة بأحدث الوسائل التعليمية.</p>
+        </div>
+        <div class="column card">
+            <img src="https://img.icons8.com/color/96/000000/laboratory.png"/>
+            <h3>تزويد المعامل</h3>
+            <p>تجهيز جميع القاعات والمباني بمعامل متكاملة.</p>
+        </div>
+        <div class="column card">
+            <img src="https://img.icons8.com/color/96/000000/books.png"/>
+            <h3>توسيع المكتبة</h3>
+            <p>إضافة مصادر تعليمية جديدة وحديثة لدعم الطلاب.</p>
+        </div>
+        <div class="column card">
+            <img src="https://img.icons8.com/color/96/000000/bus.png"/>
+            <h3>تخصيص مدر متميز</h3>
+            <p>تحسين المواصلات والخدمات اللوجستية للطلاب والمدرسين.</p>
+        </div>
+        <div class="column card">
+            <img src="https://img.icons8.com/color/96/000000/online-course.png"/>
+            <h3>مشاريع تعليمية رقمية</h3>
+            <p>إطلاق برامج تعليمية إلكترونية للطلاب لتسهيل التعلم عن بعد.</p>
+        </div>
+        <div class="column card">
+            <img src="https://img.icons8.com/color/96/000000/handshake.png"/>
+            <h3>شراكات جديدة</h3>
+            <p>تطوير التعاون مع مؤسسات تعليمية وشركات تقنية لدعم الطلاب.</p>
+        </div>
+    </div>
+</div>
+
+<!-- اتصل بنا -->
+<div class="content" id="contactContent" style="display:none;">
+    <h2 style="text-align:center; color:#004aad; margin-bottom:30px;">اتصل بنا</h2>
+    <div class="row">
+        <div class="column card">
+            <img src="https://img.icons8.com/color/96/000000/phone.png"/>
+            <h3>رقم الهاتف</h3>
+            <p>+967 739 060 456</p>
+            <p>+967 717 582 146</p>
+        </div>
+        <div class="column card">
+            <img src="https://img.icons8.com/color/96/000000/new-post.png"/>
+            <h3>البريد الإلكتروني</h3>
+            <p>rakanmohammed554@gmail.com</p>
+        </div>
+    </div>
+</div>
+
+<!-- النوافذ المنبثقة لكل الأقسام -->
+<div class="modal" id="modalIT">
+  <div class="modal-content">
+    <h2>قسم تقنية المعلومات</h2>
+    <p>يهدف قسم تقنية المعلومات إلى تمكين الطلاب من اكتساب مهارات البرمجة والشبكات.</p>
+    <p>يتعلم الطلاب لغات البرمجة الحديثة وكيفية تطوير تطبيقات سطح المكتب والويب.</p>
+    <p>يكتسب الطلاب خبرة في قواعد البيانات وإدارة نظم المعلومات.</p>
+    <p>كما يتم تدريب الطلاب على صيانة الحواسيب والشبكات.</p>
+    <p>القسم يفتح آفاق العمل في الشركات التقنية والمؤسسات التعليمية.</p>
+    <button class="close-btn">إغلاق</button>
+  </div>
+</div>
+
+<div class="modal" id="modalCyber">
+  <div class="modal-content">
+    <h2>قسم الأمن السيبراني</h2>
+    <p>يختص قسم الأمن السيبراني بحماية البيانات الرقمية وتأمين الشبكات. يتعلم الطلاب تقنيات التشفير والتصدي للهجمات الإلكترونية. يتم تدريب الطلاب على تحليل التهديدات الأمنية وإعداد خطط الدفاع. يكتسب الطلاب مهارات استخدام أدوات حماية المعلومات وإدارة المخاطر. القسم يؤهل الطلاب للعمل في المؤسسات الحكومية والخاصة كخبراء أمن معلومات.</p>
+    <button class="close-btn">إغلاق</button>
+  </div>
+</div>
+
+<div class="modal" id="modalAssistant">
+  <div class="modal-content">
+    <h2>قسم مساعد طبيب</h2>
+    <p>يركز قسم مساعد طبيب على رعاية المرضى الأساسية وتقديم الدعم للأطباء. يتعلم الطلاب مهارات الفحص السريري وإعداد التقارير الطبية. يتم تعليم الطلاب التعامل مع الحالات الطارئة والإسعافات الأولية. يكتسب الطلاب معرفة بالأدوية الأساسية وطريقة صرفها. القسم يجهز الطلاب للعمل في المستشفيات والعيادات الصحية.</p>
+    <button class="close-btn">إغلاق</button>
+  </div>
+</div>
+
+<div class="modal" id="modalAccounting">
+  <div class="modal-content">
+    <h2>قسم المحاسبة</h2>
+    <p>يهدف قسم المحاسبة إلى تدريب الطلاب على إدارة الحسابات والمالية. يتعلم الطلاب أساسيات المحاسبة المالية والمحاسبة الإدارية. يتم تعليم الطلاب إعداد التقارير المالية وتحليل البيانات. يكتسب الطلاب مهارات استخدام برامج المحاسبة الحديثة. القسم يفتح فرص العمل في البنوك والشركات والمؤسسات المالية.</p>
+    <button class="close-btn">إغلاق</button>
+  </div>
+</div>
+
+<div class="modal" id="modalPharmacy">
+  <div class="modal-content">
+    <h2>قسم الصيدلة</h2>
+    <p>يركز قسم الصيدلة على إعداد وصرف الأدوية بشكل صحيح وآمن. يتعلم الطلاب تركيب الأدوية ومراقبة الجرعات. يتم تعليم الطلاب التفاعلات الدوائية وآثار الأدوية الجانبية. يكتسب الطلاب معرفة بتقديم استشارات صحية للمرضى. القسم يؤهل الطلاب للعمل في الصيدليات والمستشفيات.</p>
+    <button class="close-btn">إغلاق</button>
+  </div>
+</div>
+
+<div class="modal" id="modalLabs">
+  <div class="modal-content">
+    <h2>قسم المختبرات</h2>
+    <p>يختص قسم المختبرات بإجراء التجارب العلمية والبحوث. يتعلم الطلاب استخدام المعدات المخبرية وتحليل النتائج. يتم تدريب الطلاب على اتباع معايير السلامة داخل المختبر. يكتسب الطلاب خبرة في التحاليل الطبية والكيميائية. القسم يهيئ الطلاب للعمل في المختبرات البحثية والطبية.</p>
+    <button class="close-btn">إغلاق</button>
+  </div>
+</div>
+
+<div class="modal" id="modalMidwifery">
+  <div class="modal-content">
+    <h2>قسم القبالة</h2>
+    <p>يهدف قسم القبالة إلى تأهيل الطلاب لرعاية الأم والطفل بعد الولادة. يتعلم الطلاب مهارات متابعة الحمل والولادة الطبيعية. يتم تدريب الطلاب على الإسعافات الأولية والتعامل مع المضاعفات. يكتسب الطلاب معرفة بالصحة الإنجابية والتغذية المناسبة. القسم يفتح فرص عمل في المستشفيات والمراكز الصحية.</p>
+    <button class="close-btn">إغلاق</button>
+  </div>
+</div>
+
+<div class="modal" id="modalGraphics">
+  <div class="modal-content">
+    <h2>قسم الجرافيكس</h2>
+    <p>يختص قسم الجرافيكس بتعليم التصميم الرقمي وبرامج الرسوميات. يتعلم الطلاب إنشاء الشعارات والملصقات والواجهات التفاعلية. يتم تدريب الطلاب على برامج التصميم المختلفة مثل الفوتوشوب والإليستريتور. يكتسب الطلاب مهارات الطباعة والتحريك الرقمي. القسم يؤهل الطلاب للعمل في وكالات التصميم والإعلانات.</p>
+    <button class="close-btn">إغلاق</button>
+  </div>
+</div>
+
+<div class="modal" id="modalCS">
+  <div class="modal-content">
+    <h2>قسم علوم الحاسوب</h2>
+    <p>يركز قسم علوم الحاسوب على دراسة الخوارزميات وهياكل البيانات.</p>
+    <p>يتعلم الطلاب تطوير البرمجيات وتصميم قواعد البيانات.</p>
+    <p>يتم تدريب الطلاب على الذكاء الاصطناعي والشبكات.</p>
+    <p>يكتسب الطلاب مهارات البرمجة المتقدمة وحل المشكلات التقنية.</p>
+    <p>القسم يفتح فرص العمل في شركات التقنية والبحث العلمي.</p>
+    <button class="close-btn">إغلاق</button>
+  </div>
+</div>
+
+<footer>
+    جميع الحقوق محفوظة © مهندس راكان الزبيري
+</footer>
+
+<script>
+// ألوان خفيفة للتبديل كل 2.5 ثانية
+const colors = ["#e6f0ff","#fff0f5","#f0fff0","#fff8e1","#e0f7fa","#ffe0f0"];
+let index=0;
+const cards = document.querySelectorAll('.card');
+const headerElement = document.querySelector('header');
+const navElement = document.querySelector('nav');
+setInterval(()=>{
+    const currentColor = colors[index];
+    cards.forEach(card=>{ card.style.backgroundColor=currentColor; });
+    headerElement.style.backgroundColor = currentColor;
+    navElement.style.backgroundColor = currentColor;
+    headerElement.style.textShadow = `0 0 8px ${currentColor}, 0 0 16px ${currentColor}`;
+    index = (index+1)%colors.length;
+},2500);
+
+// ظهور البطاقات تدريجيًا
+function showCards(container) {
+    const cards = container.querySelectorAll('.card');
+    cards.forEach((card,i) => { setTimeout(()=>{ card.classList.add('show'); }, i*150); });
+}
+showCards(document.getElementById('cardContainer'));
+
+// التنقل بين الرئيسية وخدماتنا ومشاريعنا واتصل بنا
+const headerTitle = document.getElementById('pageTitle');
+const homeLink = document.getElementById('homeLink');
+const servicesLink = document.getElementById('servicesLink');
+const projectsLink = document.getElementById('projectsLink');
+const contactLink = document.getElementById('contactLink');
+
+const mainContent = document.getElementById('mainContent');
+const servicesContent = document.getElementById('servicesContent');
+const projectsContent = document.getElementById('projectsContent');
+const contactContent = document.getElementById('contactContent');
+
+function resetHeader() {
+    headerTitle.textContent='موقع المعرفة الطلابي في كلية المجتمع بالمعافر وأقسامها';
+}
+
+homeLink.addEventListener('click', ()=>{
+    mainContent.style.display='block';
+    servicesContent.style.display='none';
+    projectsContent.style.display='none';
+    contactContent.style.display='none';
+    resetHeader();
+    showCards(mainContent);
+});
+servicesLink.addEventListener('click', ()=>{
+    mainContent.style.display='none';
+    servicesContent.style.display='block';
+    projectsContent.style.display='none';
+    contactContent.style.display='none';
+    resetHeader();
+    showCards(servicesContent);
+});
+projectsLink.addEventListener('click', ()=>{
+    mainContent.style.display='none';
+    servicesContent.style.display='none';
+    projectsContent.style.display='block';
+    contactContent.style.display='none';
+    resetHeader();
+    showCards(projectsContent);
+});
+contactLink.addEventListener('click', ()=>{
+    mainContent.style.display='none';
+    servicesContent.style.display='none';
+    projectsContent.style.display='none';
+    contactContent.style.display='block';
+    resetHeader();
+    showCards(contactContent);
+});
+
+// تأثير النقر على البطاقات + فتح النوافذ المنبثقة
+allCards = document.querySelectorAll('.card');
+allCards.forEach(card => {
+    card.addEventListener('click', ()=>{
+        const modalId = "modal" + card.getAttribute('data-modal').charAt(0).toUpperCase() + card.getAttribute('data-modal').slice(1);
+        const modal = document.getElementById(modalId);
+        if(modal){
+            modal.style.display='flex';
+        }
+    });
+});
+
+// إغلاق النوافذ
+const closeBtns = document.querySelectorAll('.close-btn');
+closeBtns.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+        btn.closest('.modal').style.display='none';
+    });
+});
+
+// إغلاق عند الضغط خارج المحتوى
+const modals = document.querySelectorAll('.modal');
+modals.forEach(modal=>{
+    modal.addEventListener('click', (e)=>{
+        if(e.target === modal){
+            modal.style.display='none';
+        }
+    });
+});
+</script>
+</body>
+</html>
